@@ -1,7 +1,8 @@
 # MockLS
 A mock language server using the LSP protocol, the purpose of which, is to help test LSP clients. 
 
-**WORK IN PROGRESS**
+**WORK IN PROGRESS!**
+
 Only initialization and shutdown is supported, no other LSP operations yet.
 
 ## Usage:
