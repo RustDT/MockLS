@@ -3,16 +3,21 @@ name = "mock_ls"
 version = "0.1.0"
 authors = ["Bruno Medeiros <bruno.do.medeiros@gmail.com>"]
 
+description = "A mock language server using the LSP protocol, for testing LSP clients."
+repository = "https://github.com/RustDT/MockLS"
+license = "Apache-2.0"
+
+
 [dependencies]
 log = "0.3"
 env_logger = "0.3"
-rust_lsp = { version = "0.5.0" , path = "../.." }
+rust_lsp = { version = "0.5.0" , git = "https://github.com/RustDT/RustLSP" }
 
 [lib]
-name = "example_ls"
-path = "src/example_ls.rs"
+name = "mock_ls_lib"
+path = "src/mock_ls.rs"
 
 [[bin]]
-name = "dummy_lsp"
+name = "mock_ls"
 path = "src/main.rs"
 test = false
