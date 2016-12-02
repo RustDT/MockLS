@@ -1,5 +1,6 @@
 # MockLS
-A mock language server using the LSP protocol, the purpose of which, is to help test LSP clients. 
+A mock language server using the LSP protocol, for the purpose of helping testing LSP clients.
+MockLS is written is Rust.
 
 **WORK IN PROGRESS!**
 
