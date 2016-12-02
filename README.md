@@ -1,9 +1,9 @@
-# DummyLSP
-A Language Server Protocol server implementation for a fake/dummy language. 
+# MockLS
+A mock language server using the LSP protocol, the purpose of which, is to help test LSP clients. 
 
-The purpose of this tool is to help test LSP clients. **WORK IN PROGRESS**
+**WORK IN PROGRESS**
 
-DummyLSP is compiled into an executable that communicates with LSP client via stdin/stdout or via TCP sockets. 
+MockLS is compiled into an executable that communicates with LSP client via stdin/stdout or via TCP sockets. 
 Command line:
- * `dummy_lsp`: communicate via stdin/stdout
- * `dummy_lsp <port number>`: listen on localhost, on given port number 
+ * `mock_ls`: communicate via stdin/stdout
+ * `mock_ls <port number>`: listen on localhost, on given port number 
