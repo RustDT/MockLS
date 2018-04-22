@@ -11,7 +11,7 @@ license = "Apache-2.0"
 [dependencies]
 log = "0.3"
 env_logger = "0.3"
-rust_lsp = { version = "0.5.0" , git = "https://github.com/RustDT/RustLSP" }
+rust_lsp = "0.6"
 
 [lib]
 name = "mock_ls_lib"
