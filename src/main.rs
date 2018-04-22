@@ -7,9 +7,9 @@
 
 #[macro_use] extern crate log;
 extern crate env_logger;
-extern crate example_ls;
 extern crate rust_lsp;
 
+mod mock_ls;
 
 use std::env;
 use std::io;
@@ -37,7 +37,7 @@ fn main() {
 		// Use stdin/stdout
 		
 		let stdin = std::io::stdin();
-		example_ls::run_lsp_server(&mut stdin.lock(), move || std::io::stdout());
+		mock_ls::run_lsp_server(&mut stdin.lock(), move || std::io::stdout());
 	} else {
 		let mut args = env::args();
 		args.next();
@@ -87,7 +87,7 @@ fn handle_client(stream: TcpStream) {
 	
 	let mut input = io::BufReader::new(stream.try_clone().expect("Failed to clone stream"));
 	
-	example_ls::run_lsp_server(&mut input, || {
+	mock_ls::run_lsp_server(&mut input, || {
 		stream
 	});
 }

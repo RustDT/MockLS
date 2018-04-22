@@ -11,17 +11,16 @@
 
 extern crate rust_lsp;
 
-
 use rust_lsp::ls_types::*;
-use rust_lsp::lsp_server::*;
+use rust_lsp::lsp::{LanguageServerHandling, LSCompletable, LSPEndpoint};
 use rust_lsp::jsonrpc::method_types::MethodError;
-use rust_lsp::jsonrpc::EndpointOutput;
 use rust_lsp::jsonrpc::MethodCompletable;
+use rust_lsp::jsonrpc::Endpoint;
 
 use std::io;
 
 pub struct DummyLanguageServer {
-	endpoint_output : EndpointOutput,
+	endpoint_output : Endpoint
 }
 
 pub fn run_lsp_server<OUT, OUT_P>(input: &mut io::BufRead, out_stream_provider: OUT_P)
@@ -33,7 +32,7 @@ where
 	
 	let ls = DummyLanguageServer{ endpoint_output : endpoint_output.clone() };
 	
-	LSPEndpoint::run_server_from_input(ls, input, endpoint_output);
+	LSPEndpoint::run_server_from_input(input, endpoint_output, ls);
 }
 
 /**
@@ -49,7 +48,7 @@ impl DummyLanguageServer {
 	
 }
 
-impl LanguageServer for DummyLanguageServer {
+impl LanguageServerHandling for DummyLanguageServer {
 	
 	fn initialize(&mut self, _: InitializeParams, completable: MethodCompletable<InitializeResult, InitializeError>) {
 		let capabilities = ServerCapabilities::default();
@@ -114,6 +113,12 @@ impl LanguageServer for DummyLanguageServer {
 		completable.complete(Err(Self::error_not_available(())))
 	}
 	fn rename(&mut self, _: RenameParams, completable: LSCompletable<WorkspaceEdit>) {
+		completable.complete(Err(Self::error_not_available(())))
+	}
+	fn document_link(&mut self, params: DocumentLinkParams, completable: LSCompletable<Vec<DocumentLink>>) {
+		completable.complete(Err(Self::error_not_available(())))
+	}
+	fn document_link_resolve(&mut self, params: DocumentLink, completable: LSCompletable<DocumentLink>) {
 		completable.complete(Err(Self::error_not_available(())))
 	}
 }
